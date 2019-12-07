@@ -9,13 +9,16 @@ function selectRange(){
 }
 
 function selectCharacters(){
+
 #arrayの名前から配列を参照そして関数内の配列として定義
 	arrayname=$1
 	eval ref=\"\${$arrayname[@]}\"
     list=(${ref})
+
 #該当キャラの総数を取得
 	count=`echo ${#list[@]}`
-	
+
+#該当キャラがいるか検証。いなければ終了
 	if [ ${count} = 0 ] ; then
 		echo "該当するキャラがいません"
 	else
@@ -24,7 +27,7 @@ function selectCharacters(){
 		color=`echo $(((RANDOM%8) + 1))`
 		chara=`echo ${list[$random]}`
 		chara=`echo ${chara#*)}`
-
+#結果を出力
 		echo "キャラクター：${chara}"
 		echo "カラーリング：${color}"
 	fi
